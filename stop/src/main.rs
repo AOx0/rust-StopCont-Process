@@ -6,6 +6,8 @@ use std::env;
 fn main() {
     let args: Vec<String> = env::args().collect();
     let target_name: &str = &(args[1..].join(" ").to_lowercase());
+
+    if target_name.len() == 0 { return; }
     
     let s = System::new_all();
     for (pid, process) in s.get_processes() {
