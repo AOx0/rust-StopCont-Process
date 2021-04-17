@@ -1,5 +1,5 @@
 [package]
-name = "stop"
+name = "qil"
 version = "0.2.0"
 authors = ["AOx0 <50227494+AOx0@users.noreply.github.com>"]
 edition = "2018"
