@@ -3,26 +3,25 @@ use std::io::{self, Write};
 use sysinfo::{ProcessExt, System, SystemExt};
 use std::env;
 
-fn main() {
+pub fn kill_shortcut(flag: &str, msg: &str) {
     let args: Vec<String> = env::args().collect();
     let target_name: &str = &(args[1..].join(" ").to_lowercase());
-    
-    if target_name.len() == 0 { return; }
 
-    let s = System::new_all();
-    for (pid, process) in s.get_processes() {
+    if target_name.len() == 0 { return; }
+    
+    for (pid, process) in System::new_all().get_processes() {
         let process_path = process.exe().display().to_string().to_lowercase();
         let process_name = process.name().to_lowercase();
         if process_name == target_name || (process_path.contains(target_name) && process_path.contains("contents/macos") && process_path.matches("/").count() < 7) {
-            let s = pid.to_string();
-            let _s: &str = &s;
-            let a = Command::new("kill")
-            .args(&["-cont", _s ])
+            let pid = pid.to_string();
+            let pid: &str = &pid;
+            let command = Command::new("kill")
+            .args(&[flag, pid ])
             .output()
             .expect("Fail");
-            io::stdout().write_all(&a.stdout).unwrap();
-            io::stderr().write_all(&a.stderr).unwrap();
-            println!("Continued {1} with PID {0}", pid, process.name());
+            io::stdout().write_all(&command.stdout).unwrap();
+            io::stderr().write_all(&command.stderr).unwrap();
+            println!("{2} {1} with PID {0}", pid, process.name(), msg);
             break;
         }
     }

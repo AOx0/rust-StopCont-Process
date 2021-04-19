@@ -1,0 +1,22 @@
+[package]
+name = "kill_shortcuts"
+version = "0.1.0"
+authors = ["AOx0 <50227494+AOx0@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+kill_shortcuts_core = { path="../kill_shortcuts_core" }
+
+[[bin]]
+name = "cont"
+path = "cont/src/main.rs"
+
+[[bin]]
+name = "stop"
+path = "stop/src/main.rs"
+
+[[bin]]
+name = "qil"
+path = "qil/src/main.rs"
