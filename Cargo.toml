@@ -7,7 +7,11 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-kill_shortcuts_core = { path="../kill_shortcuts_core" }
+sysinfo = "0.17.2"
+
+[lib]
+name = "kill_shortcuts"
+path = "kill_shortcuts/src/lib.rs"
 
 [[bin]]
 name = "cont"

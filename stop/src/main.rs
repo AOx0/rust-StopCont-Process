@@ -1,4 +1,4 @@
-use kill_shortcuts_core::kill_shortcut;
+use kill_shortcuts::kill_shortcut;
 
 fn main () {
     kill_shortcut("-stop", "Paused");
